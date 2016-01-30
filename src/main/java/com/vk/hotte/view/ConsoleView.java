@@ -87,8 +87,8 @@ public class ConsoleView {
         String inputNumberText = "Введите число от " + lowerGuess + " до " + higherGuess + ": ";
         System.out.print(inputNumberText);
 
-        int number = 0;
-        while (number == 0) {
+        Integer number = null;
+        while (number == null) {
             try {
                 Scanner scanner = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
                 number = scanner.nextInt();
