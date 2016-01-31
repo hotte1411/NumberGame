@@ -11,7 +11,17 @@ public class WinnerChecker {
         this.game = game;
     }
 
-    public boolean isPlayerWin(int number) {
-        return game.getNumber().getNumberForGuess() == number;
+    public int compareGuess(int guessNumber) {
+        int numberForGuess = game.getNumber().getNumberForGuess();
+
+        if(numberForGuess < guessNumber) {
+            return 1;
+        }
+
+        if(numberForGuess > guessNumber) {
+            return -1;
+        }
+
+        return 0;
     }
 }

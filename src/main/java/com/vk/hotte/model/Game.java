@@ -16,11 +16,23 @@ public class Game {
         this.countOfGuesses = countOfGuesses;
     }
 
-    public Game(Level level) {
+    public Game(Level level, Player player) {
         this.number = new Number(level);
         this.level = level;
         this.countOfGuesses = 0;
-        this.player = new Player();
+        this.player = player;
+    }
+
+    public void setNumber(Number number) {
+        this.number = number;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
     public Number getNumber() {

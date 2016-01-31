@@ -9,7 +9,6 @@ public class ConsoleViewTest {
 
     @Test
     public void testAskForLevel() throws Exception {
-        ConsoleView.askForLevel();
 
     }
 }

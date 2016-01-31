@@ -3,6 +3,7 @@ package com.vk.hotte.view;
 import com.vk.hotte.controller.RatingSaver;
 import com.vk.hotte.controller.WinnerChecker;
 import com.vk.hotte.model.Game;
+import com.vk.hotte.model.Player;
 import com.vk.hotte.model.Rating;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -20,7 +21,8 @@ public class ConsoleView {
 
     public static void main(String[] args) {
 
-        game = new Game(askForLevel());
+        Player player = new Player();
+        game = new Game(askForLevel(), player);
         WinnerChecker winnerChecker = new WinnerChecker(game);
         ratingSaver = new RatingSaver(game);
 
@@ -40,23 +42,28 @@ public class ConsoleView {
         do {
             guessNumber = askForGuessNumber();
             game.setCountOfGuesses(game.getCountOfGuesses() + 1);
+            int checkNumber = winnerChecker.compareGuess(guessNumber);
 
-            if (guessNumber > game.getNumber().getNumberForGuess()) {
-                System.out.println("Бери ниже!");
-                if (higherGuess >= guessNumber) {
-                    higherGuess = guessNumber - 1;
-                }
-            } else if (guessNumber < game.getNumber().getNumberForGuess()){
-                System.out.println("Бери выше!");
-                if (lowerGuess <= guessNumber) {
-                    lowerGuess = guessNumber + 1;
-                }
+            switch (checkNumber) {
+                case 1 :
+                    System.out.println("Бери ниже!");
+                    if (higherGuess >= guessNumber) {
+                        higherGuess = guessNumber - 1;
+                    }
+                    break;
+                case -1 :
+                    System.out.println("Бери выше!");
+                    if (lowerGuess <= guessNumber) {
+                        lowerGuess = guessNumber + 1;
+                    }
+                    break;
             }
-        } while (!winnerChecker.isPlayerWin(guessNumber));
+
+        } while (winnerChecker.compareGuess(guessNumber) != 0);
 
         System.out.println("ОТЛИЧНО!! Количество попыток: " + game.getCountOfGuesses());
         game.getPlayer().setName(askForPlayerName());
-        ratingSaver.saveRating();
+        ratingSaver.saveRating(RatingSaver.DIRECTORY_PATH, RatingSaver.FILE_TO_SAVE);
         showRating();
     }
 
@@ -108,8 +115,8 @@ public class ConsoleView {
 
     private static void showRating() {
         System.out.println(" - - рейтинг всех игроков - - ");
-        ArrayList<Rating> allRatings = ratingSaver.getAllRates();
-        String level = game.getLevel().toString();
+        ArrayList<Rating> allRatings = ratingSaver.getAllRates(RatingSaver.DIRECTORY_PATH, RatingSaver.FILE_TO_SAVE);
+        Game.Level level = game.getLevel();
         for (Rating rating : allRatings) {
             if (rating.getLevel().equals(level)) {
                 System.out.printf("|| %17s || %3d ||\n", rating.getPlayerName(), rating.getRating());

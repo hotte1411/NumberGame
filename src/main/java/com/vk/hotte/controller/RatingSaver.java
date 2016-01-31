@@ -12,22 +12,22 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class RatingSaver {
-    Game game;
-    ArrayList<Rating> allRatings = new ArrayList<Rating>();
-    String fileToSave = "rating.txt";
-    String pathDirToSave = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "NumberGame";
+    public final static String DIRECTORY_PATH = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "NumberGame";
+    public final static String FILE_TO_SAVE = "rating.txt";
+    private Game game;
 
     public RatingSaver(Game game) {
         this.game = game;
     }
 
-    public boolean saveRating() {
+    public boolean saveRating(String directoryPath, String fileToSave) {
 
-        new File(pathDirToSave).mkdirs();
-        String pathFileToSave = pathDirToSave + File.separator + fileToSave;
 
-        allRatings = getAllRates();
-        Rating currentRating = new Rating(game.getLevel().toString(), game.getPlayer().getName());
+        new File(directoryPath).mkdirs();
+        String pathFileToSave = directoryPath + File.separator + fileToSave;
+
+        ArrayList<Rating> allRatings = getAllRates(directoryPath, fileToSave);
+        Rating currentRating = new Rating(game.getLevel(), game.getPlayer().getName());
         currentRating.setRating(game.getCountOfGuesses());
         if (allRatings.contains(currentRating)) {
             if (currentRating.compareTo(allRatings.get(allRatings.indexOf(currentRating))) < 0) {
@@ -49,16 +49,16 @@ public class RatingSaver {
         return true;
     }
 
-    public ArrayList<Rating> getAllRates() {
-        File fileWithRatings = new File(pathDirToSave + File.separator + fileToSave);
+    public ArrayList<Rating> getAllRates(String directoryPath, String fileToSave) {
+        File fileWithRatings = new File(directoryPath + File.separator + fileToSave);
         ArrayList<Rating> allRatings = new ArrayList<Rating>();
 
         if (fileWithRatings.exists()) {
             try {
-                Scanner scanner = new Scanner(new File(pathDirToSave + File.separator + fileToSave));
+                Scanner scanner = new Scanner(new File(directoryPath + File.separator + fileToSave));
                 while (scanner.hasNext()) {
                     String ratingString[] = scanner.next().split("/");
-                    Rating tempRating = new Rating(ratingString[0], ratingString[1]);
+                    Rating tempRating = new Rating(Game.Level.valueOf(ratingString[0]), ratingString[1]);
                     tempRating.setRating(Integer.parseInt(ratingString[2]));
                     allRatings.add(tempRating);
                 }
