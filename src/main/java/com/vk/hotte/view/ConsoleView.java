@@ -5,6 +5,7 @@ import com.vk.hotte.controller.WinnerChecker;
 import com.vk.hotte.model.Game;
 import com.vk.hotte.model.Player;
 import com.vk.hotte.model.Rating;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -45,13 +46,13 @@ public class ConsoleView {
             int checkNumber = winnerChecker.compareGuess(guessNumber);
 
             switch (checkNumber) {
-                case 1 :
+                case 1:
                     System.out.println("Бери ниже!");
                     if (higherGuess >= guessNumber) {
                         higherGuess = guessNumber - 1;
                     }
                     break;
-                case -1 :
+                case -1:
                     System.out.println("Бери выше!");
                     if (lowerGuess <= guessNumber) {
                         lowerGuess = guessNumber + 1;

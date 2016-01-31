@@ -10,7 +10,7 @@ public class Number {
         this.numberForGuess = makeRandomNumber(level);
     }
 
-    public int getNumberForGuess(){
+    public int getNumberForGuess() {
         return this.numberForGuess;
     }
 
@@ -19,11 +19,14 @@ public class Number {
         int randomInt;
         switch (level) {
             case EASY:
-                randomInt = random.nextInt(9);break;
+                randomInt = random.nextInt(9);
+                break;
             case MEDIUM:
-                randomInt = random.nextInt(99);break;
+                randomInt = random.nextInt(99);
+                break;
             case HARD:
-                randomInt = random.nextInt(999);break;
+                randomInt = random.nextInt(999);
+                break;
             default:
                 randomInt = 0;
         }

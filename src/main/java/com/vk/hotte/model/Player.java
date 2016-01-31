@@ -27,6 +27,6 @@ public class Player {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Player && this.getName() != null && ((Player) obj).getName() != null &&((Player) obj).getName().equals(this.getName());
+        return obj instanceof Player && this.getName() != null && ((Player) obj).getName() != null && ((Player) obj).getName().equals(this.getName());
     }
 }

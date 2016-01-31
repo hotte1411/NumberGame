@@ -8,8 +8,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
-
 
 public class RatingSaverTest {
 
@@ -27,7 +25,7 @@ public class RatingSaverTest {
         Assert.assertEquals(expected, actual);
         int actualRatingValue = actual.getRating();
         int expectedRatingValue = 3;
-        Assert.assertEquals(expectedRatingValue,actualRatingValue);
+        Assert.assertEquals(expectedRatingValue, actualRatingValue);
 
         game.setCountOfGuesses(4);
         ratingSaver.saveRating("E://test/", "rating.txt");

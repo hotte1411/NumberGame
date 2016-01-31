@@ -3,8 +3,6 @@ package com.vk.hotte.model;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 
 public class GameTest {
 
@@ -28,7 +26,7 @@ public class GameTest {
     @Test
     public void testSetNumber() throws Exception {
         Game game = new Game(Game.Level.EASY, new Player("hotte"));
-        for(int index = 0; index < 100; ++index) {
+        for (int index = 0; index < 100; ++index) {
             game.setNumber(new Number(Game.Level.EASY));
             int actualNumber = game.getNumber().getNumberForGuess();
             boolean isCorrect = actualNumber < 10;
@@ -36,7 +34,7 @@ public class GameTest {
         }
 
         game = new Game(Game.Level.MEDIUM, new Player("hotte"));
-        for(int index = 0; index < 1000; ++index) {
+        for (int index = 0; index < 1000; ++index) {
             game.setNumber(new Number(Game.Level.MEDIUM));
             int actualNumber = game.getNumber().getNumberForGuess();
             boolean isCorrect = actualNumber < 100;
@@ -44,7 +42,7 @@ public class GameTest {
         }
 
         game = new Game(Game.Level.HARD, new Player("hotte"));
-        for(int index = 0; index < 10000; ++index) {
+        for (int index = 0; index < 10000; ++index) {
             game.setNumber(new Number(Game.Level.HARD));
             int actualNumber = game.getNumber().getNumberForGuess();
             boolean isCorrect = actualNumber < 1000;

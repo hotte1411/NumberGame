@@ -14,11 +14,11 @@ public class WinnerChecker {
     public int compareGuess(int guessNumber) {
         int numberForGuess = game.getNumber().getNumberForGuess();
 
-        if(numberForGuess < guessNumber) {
+        if (numberForGuess < guessNumber) {
             return 1;
         }
 
-        if(numberForGuess > guessNumber) {
+        if (numberForGuess > guessNumber) {
             return -1;
         }
 

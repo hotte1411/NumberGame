@@ -5,8 +5,6 @@ import com.vk.hotte.model.Player;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 
 public class WinnerCheckerTest {
 
@@ -18,7 +16,7 @@ public class WinnerCheckerTest {
 
         int actualNumber = game.getNumber().getNumberForGuess();
         Assert.assertTrue(winnerChecker.compareGuess(actualNumber) == 0);
-        Assert.assertTrue(winnerChecker.compareGuess(actualNumber+1) == 1);
-        Assert.assertTrue(winnerChecker.compareGuess(actualNumber-1) == -1);
+        Assert.assertTrue(winnerChecker.compareGuess(actualNumber + 1) == 1);
+        Assert.assertTrue(winnerChecker.compareGuess(actualNumber - 1) == -1);
     }
 }
