@@ -11,15 +11,37 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/**
+ * Console view of game
+ */
 public class ConsoleView {
-
+    /**
+     * current Game instance
+     */
     private static Game game;
+
+    /**
+     * player's guess
+     */
     private static int guessNumber;
+    /**
+     * RatingSaver instance
+     */
     private static RatingSaver ratingSaver;
+    /**
+     * lover guess by player
+     */
     private static int lowerGuess;
+    /**
+     * higher guess by player
+     */
     private static int higherGuess;
 
+    /**
+     * entry point of application
+     *
+     * @param args arguments with which application runs
+     */
     public static void main(String[] args) {
 
         Player player = new Player();
@@ -68,6 +90,12 @@ public class ConsoleView {
         showRating();
     }
 
+    /**
+     * asked player to enter level of game (1 or 2 or 3)
+     *
+     * @return Game.Level.EASY if enters 1, Game.Level.MEDIUM if enters 2, Game.Level.HARD if enters 3,
+     * Game.Level.EASY if enters 1 in any other ints, asked to enter number if not number is enters
+     */
     public static Game.Level askForLevel() {
         System.out.print("Выберите уровень сложности (1,2,3): ");
         int level = 0;
@@ -91,6 +119,11 @@ public class ConsoleView {
         }
     }
 
+    /**
+     * asked player to enter guess number, if not number is entered, re-asked to enter tne number
+     *
+     * @return player's guess
+     */
     private static int askForGuessNumber() {
         String inputNumberText = "Введите число от " + lowerGuess + " до " + higherGuess + ": ";
         System.out.print(inputNumberText);
@@ -108,12 +141,20 @@ public class ConsoleView {
         return number;
     }
 
+    /**
+     * asked player to enter his nickname
+     *
+     * @return player's nickname
+     */
     private static String askForPlayerName() {
         System.out.print("Введите имя игрока: ");
         Scanner scanner = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
         return scanner.next();
     }
 
+    /**
+     * shows all ratings by current Game.Level in console
+     */
     private static void showRating() {
         System.out.println(" - - рейтинг всех игроков - - ");
         ArrayList<Rating> allRatings = ratingSaver.getAllRates(RatingSaver.DIRECTORY_PATH, RatingSaver.FILE_TO_SAVE);

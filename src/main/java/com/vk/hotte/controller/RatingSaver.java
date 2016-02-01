@@ -11,18 +11,43 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+/**
+ * Class controller used for save and read ratings to/from file
+ */
 public class RatingSaver {
+    /**
+     * user's home directory with added NumberGame directory
+     */
     public final static String DIRECTORY_PATH = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "NumberGame";
+
+    /**
+     * file name
+     */
     public final static String FILE_TO_SAVE = "rating.txt";
+
+    /**
+     * current Game instance
+     */
     private Game game;
 
+    /**
+     * constructor
+     *
+     * @param game game instance
+     */
     public RatingSaver(Game game) {
         this.game = game;
     }
 
-    public boolean saveRating(String directoryPath, String fileToSave) {
+    /**
+     * method, used for save current player's rating to file
+     *
+     * @param directoryPath home directory, where should be created file to save
+     * @param fileToSave    name of file where ratings will be save
+     */
+    public void saveRating(String directoryPath, String fileToSave) {
 
-
+        //noinspection ResultOfMethodCallIgnored
         new File(directoryPath).mkdirs();
         String pathFileToSave = directoryPath + File.separator + fileToSave;
 
@@ -46,9 +71,15 @@ public class RatingSaver {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return true;
     }
 
+    /**
+     * get ArrayList of all ratings saved in fileToSave
+     *
+     * @param directoryPath user home directory
+     * @param fileToSave    name of fileToSave
+     * @return ArrayList<Rating> of all records of ratings in file
+     */
     public ArrayList<Rating> getAllRates(String directoryPath, String fileToSave) {
         File fileWithRatings = new File(directoryPath + File.separator + fileToSave);
         ArrayList<Rating> allRatings = new ArrayList<Rating>();
